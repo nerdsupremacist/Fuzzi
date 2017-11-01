@@ -1,0 +1,16 @@
+PODS:
+  - Fuzzi (0.1.0)
+
+DEPENDENCIES:
+  - Fuzzi (from `../`)
+
+EXTERNAL SOURCES:
+  Fuzzi:
+    :path: ../
+
+SPEC CHECKSUMS:
+  Fuzzi: f845e3026d28fa4c847af0d7fbe2a07293396491
+
+PODFILE CHECKSUM: ae43669814ac8cec0b84c91a37bc8bbbda967d32
+
+COCOAPODS: 1.4.0.beta.1

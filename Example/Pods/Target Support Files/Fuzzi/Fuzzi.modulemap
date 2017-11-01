@@ -1,0 +1,6 @@
+framework module Fuzzi {
+  umbrella header "Fuzzi-umbrella.h"
+
+  export *
+  module * { export * }
+}
