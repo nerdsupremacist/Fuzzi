@@ -88,7 +88,7 @@ public struct SearchResult<Value> {
 
 extension Sequence where Element: Searchable {
     
-    public func tree() -> SearchTree<Element>? {
+    public func searchTree() -> SearchTree<Element>? {
         guard let firstWord = flatMap({ $0.words }).first else {
             return nil
         }
