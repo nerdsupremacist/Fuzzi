@@ -36,7 +36,6 @@ class ParallelResult<Value> {
 extension Sequence {
     
     func parallelMap<Value>(_ transform: @escaping (Element) -> Value) -> [Value] {
-        
         let group = DispatchGroup()
         let results: [ParallelResult<Value>] = map { element in
             return .byAppliying(to: group, value: transform(element))

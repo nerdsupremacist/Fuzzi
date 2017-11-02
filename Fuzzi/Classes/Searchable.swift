@@ -37,9 +37,13 @@ extension Tree {
         children[distance, default: .init(word: word)].append(value: value, for: word)
     }
     
-    func appending(value: Value) -> Tree<Value> {
+    public mutating func append(_ value: Value) {
+        value.words.forEach { append(value: value, for: $0) }
+    }
+    
+    public func appending(value: Value) -> Tree<Value> {
         var tree = self
-        value.words.forEach { tree.append(value: value, for: $0) }
+        tree.append(value)
         return tree
     }
     
@@ -50,7 +54,7 @@ extension Tree {
         let lowerAllowed = max(0, currentDistance - maxDistance)
         
         let range = (lowerAllowed...upperAllowed)
-        let others = range.parallelFlatMap { self.children[$0]?.searchWord(query: query, maxDistance: maxDistance) ?? [] }
+        let others = range.flatMap { self.children[$0]?.searchWord(query: query, maxDistance: maxDistance) ?? [] }
         let coefficient = Search.coefficient(value: word, using: query)
         return Set(others + (coefficient <= relevantAfter ? values : []))
     }
