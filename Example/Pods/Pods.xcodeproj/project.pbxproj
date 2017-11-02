@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04A5D81FFAB2461AF91F1470AFA6C0D2 /* Fuzzi-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B0F516F3355B941BA7EB0997E6E86C3C /* Fuzzi-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0E564B661FAA08B000163B65 /* ParalellStuff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E564B651FAA08B000163B65 /* ParalellStuff.swift */; };
+		059EDAD2AF93277B676C794033021ED1 /* Fuzzi-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E95E82A4083BBD6B7B26ECC400C5979 /* Fuzzi-dummy.m */; };
 		16B0AF39036A3FA9565FB2359CC053E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		1C94E166F5AA72EF268654E7C1870678 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		29E2EEAC7A6EE1E79C1E3B90E9154371 /* Fuzzi-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DC883B99E007CF7585BD3D1289ABBC8D /* Fuzzi-dummy.m */; };
-		719EBD8B35A8C8FB92BF3FD1E6FE7C13 /* Searchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2776672A5BD6C04E90D3DFBFE4F31339 /* Searchable.swift */; };
+		1718A59D84367B23420D7BDDEF252B4B /* Searchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE01BAF1E0508A584F16D50C3F6E9FA5 /* Searchable.swift */; };
 		74C72707614141696AD80EBF3283E0C4 /* Pods-Fuzzi_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B6727DEAFCAFE9524E53AB0363DEE2AC /* Pods-Fuzzi_Tests-dummy.m */; };
+		7697F3D0313AA253ECB4F93E71183003 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		88622F76613423B80004E2F2B7655687 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 		93D29708BB406EEF2C0F29E10BC8DD34 /* Pods-Fuzzi_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 67D96CF22C3A08F8B34F87735771E893 /* Pods-Fuzzi_Example-dummy.m */; };
 		A02A4D50EAB053257C2A82E6D8E9A466 /* Pods-Fuzzi_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = ACA6076148138ADA15F1E586A74595E1 /* Pods-Fuzzi_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A5AC5958CD9124B1762AA87680834B33 /* ParalellStuff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E685811BC454937631B8B6FF3FCD2A9 /* ParalellStuff.swift */; };
 		BEC082C5A09648EE35BDDB7994FC846F /* Pods-Fuzzi_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 20A3A29C4C2598CFB8C7D671C5F1DF54 /* Pods-Fuzzi_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EBCB6DD0B073D5B9D8D6565BEB909D44 /* Fuzzi-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D366952829355A46A038F0AE00042FD9 /* Fuzzi-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,53 +25,53 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 3031089F083250BE690CC811C1844FAF;
+			remoteGlobalIDString = B694663B2B3F32BAC0CBB31F1383D907;
 			remoteInfo = Fuzzi;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0E564B651FAA08B000163B65 /* ParalellStuff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParalellStuff.swift; sourceTree = "<group>"; };
 		13B94897D7AFE8419BF6FA670B3427A2 /* Pods-Fuzzi_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Fuzzi_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		1930D0BF5B508D17782A7CBC57097A6E /* Pods-Fuzzi_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Fuzzi_Tests.modulemap"; sourceTree = "<group>"; };
+		1930D0BF5B508D17782A7CBC57097A6E /* Pods-Fuzzi_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Fuzzi_Tests.modulemap"; sourceTree = "<group>"; };
+		1E685811BC454937631B8B6FF3FCD2A9 /* ParalellStuff.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParalellStuff.swift; path = Fuzzi/Classes/ParalellStuff.swift; sourceTree = "<group>"; };
 		20A3A29C4C2598CFB8C7D671C5F1DF54 /* Pods-Fuzzi_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Fuzzi_Example-umbrella.h"; sourceTree = "<group>"; };
-		2776672A5BD6C04E90D3DFBFE4F31339 /* Searchable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Searchable.swift; path = Fuzzi/Classes/Searchable.swift; sourceTree = "<group>"; };
-		28B6CB2FE6C08186F405FBB2086FF629 /* Fuzzi.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Fuzzi.modulemap; sourceTree = "<group>"; };
+		2D4F5DD29D27895BB2490B7F1F52B4DC /* Fuzzi-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Fuzzi-prefix.pch"; sourceTree = "<group>"; };
 		34A1C5A1872E2CC61C31B01065253BCF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		354ADBF12C6B8CB10C21FCB7DE4D8E88 /* Pods-Fuzzi_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Fuzzi_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		39430187C0590BFED28BEC2D5B38DC75 /* Pods-Fuzzi_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Fuzzi_Example.release.xcconfig"; sourceTree = "<group>"; };
 		3CF281A9D5360C087AF236A98F259B22 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D6FAE844BF3AB63C306CFA2521E7096 /* Pods-Fuzzi_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Fuzzi_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		4D9F6306ECFD5D445C5A01E8F8A595ED /* Pods-Fuzzi_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Fuzzi_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		53720FA2767DA8CBA86DC99D2E244D56 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5B431A31E4546A4953CA8765C0F4A98F /* Pods-Fuzzi_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Fuzzi_Example.modulemap"; sourceTree = "<group>"; };
+		5B431A31E4546A4953CA8765C0F4A98F /* Pods-Fuzzi_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Fuzzi_Example.modulemap"; sourceTree = "<group>"; };
+		5E95E82A4083BBD6B7B26ECC400C5979 /* Fuzzi-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Fuzzi-dummy.m"; sourceTree = "<group>"; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		67D96CF22C3A08F8B34F87735771E893 /* Pods-Fuzzi_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Fuzzi_Example-dummy.m"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A0E850A225C329BEC64CA654C30A8967 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1EA81FCF71323E9B51C7A361EE71E28 /* Pods-Fuzzi_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Fuzzi_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		A499FDF7E277B99F5AB701E92D0F0C52 /* Fuzzi.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Fuzzi.xcconfig; sourceTree = "<group>"; };
+		A2C9BDAC690A51E830658E0BA3D4F901 /* Fuzzi.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Fuzzi.modulemap; sourceTree = "<group>"; };
 		ACA6076148138ADA15F1E586A74595E1 /* Pods-Fuzzi_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Fuzzi_Tests-umbrella.h"; sourceTree = "<group>"; };
+		AD80198D2A38A0B7B94FD4E59B5EED13 /* Fuzzi.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Fuzzi.xcconfig; sourceTree = "<group>"; };
 		AF0A2CEB09287A1CAA9EEB01E616641C /* Pods-Fuzzi_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Fuzzi_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		B0F516F3355B941BA7EB0997E6E86C3C /* Fuzzi-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Fuzzi-umbrella.h"; sourceTree = "<group>"; };
 		B6727DEAFCAFE9524E53AB0363DEE2AC /* Pods-Fuzzi_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Fuzzi_Tests-dummy.m"; sourceTree = "<group>"; };
-		B84945E705285BEE42B63C16A9B280EE /* Fuzzi-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Fuzzi-prefix.pch"; sourceTree = "<group>"; };
-		C0BE11FC215C31FB58CA8075DA8F89C8 /* Pods_Fuzzi_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fuzzi_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C4F02104FDEF9D05AE627A0B3DAB124C /* Fuzzi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Fuzzi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0BE11FC215C31FB58CA8075DA8F89C8 /* Pods_Fuzzi_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Fuzzi_Example.framework; path = "Pods-Fuzzi_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4F02104FDEF9D05AE627A0B3DAB124C /* Fuzzi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Fuzzi.framework; path = Fuzzi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C98E14A260902331FC185E01688DA08B /* Pods-Fuzzi_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Fuzzi_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		DC883B99E007CF7585BD3D1289ABBC8D /* Fuzzi-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Fuzzi-dummy.m"; sourceTree = "<group>"; };
-		DD29B32AFDB296A6D86CABFAEF82BBE5 /* Pods_Fuzzi_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fuzzi_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D366952829355A46A038F0AE00042FD9 /* Fuzzi-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Fuzzi-umbrella.h"; sourceTree = "<group>"; };
+		DD29B32AFDB296A6D86CABFAEF82BBE5 /* Pods_Fuzzi_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Fuzzi_Tests.framework; path = "Pods-Fuzzi_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E622554374BEA194D5DD914008C57581 /* Pods-Fuzzi_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Fuzzi_Tests-resources.sh"; sourceTree = "<group>"; };
 		E9028FD3108BBD3F929433C17F293FCC /* Pods-Fuzzi_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Fuzzi_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		EB96FF74409CEAE59DA17F42C6A45956 /* Pods-Fuzzi_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Fuzzi_Example-frameworks.sh"; sourceTree = "<group>"; };
 		EBBE522DFCBAB50BE3EF2B0DF3DB725A /* Pods-Fuzzi_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Fuzzi_Example-resources.sh"; sourceTree = "<group>"; };
+		FE01BAF1E0508A584F16D50C3F6E9FA5 /* Searchable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Searchable.swift; path = Fuzzi/Classes/Searchable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		7D768A569A84BA1FD53EBA03C5C6FBF6 /* Frameworks */ = {
+		15E7C5379EA96958ECE36CAD3F8CA6B1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C94E166F5AA72EF268654E7C1870678 /* Foundation.framework in Frameworks */,
+				7697F3D0313AA253ECB4F93E71183003 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,15 +94,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		021D5310D67A411E91B5B224A6A170A3 /* Fuzzi */ = {
+		1FE5413271DB7E7D2ED118ED5F6E6B23 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2776672A5BD6C04E90D3DFBFE4F31339 /* Searchable.swift */,
-				0E564B651FAA08B000163B65 /* ParalellStuff.swift */,
-				D80151C001D1E09013229428852009D3 /* Support Files */,
+				4F308D971EBEAF943CD62379A1E75217 /* Fuzzi */,
 			);
-			name = Fuzzi;
-			path = ../..;
+			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		32288C510EC658A7979FE9FBC585519B /* Pods-Fuzzi_Example */ = {
@@ -142,6 +139,17 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
+		4F308D971EBEAF943CD62379A1E75217 /* Fuzzi */ = {
+			isa = PBXGroup;
+			children = (
+				1E685811BC454937631B8B6FF3FCD2A9 /* ParalellStuff.swift */,
+				FE01BAF1E0508A584F16D50C3F6E9FA5 /* Searchable.swift */,
+				A029CB9402A44A1C20B279C00711E283 /* Support Files */,
+			);
+			name = Fuzzi;
+			path = ../..;
+			sourceTree = "<group>";
+		};
 		53E2AA64F8DD31A2E5D36CBB9DEC0E9A /* Pods-Fuzzi_Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,23 +168,29 @@
 			path = "Target Support Files/Pods-Fuzzi_Tests";
 			sourceTree = "<group>";
 		};
-		6BAE53C7AE6862FB1471DABB2AB05385 /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				021D5310D67A411E91B5B224A6A170A3 /* Fuzzi */,
-			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				6BAE53C7AE6862FB1471DABB2AB05385 /* Development Pods */,
+				1FE5413271DB7E7D2ED118ED5F6E6B23 /* Development Pods */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
 				410A2145F726A342E70B7B8B303486F7 /* Products */,
 				4B51F04068A719D4959EED5A5B777E22 /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		A029CB9402A44A1C20B279C00711E283 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				A2C9BDAC690A51E830658E0BA3D4F901 /* Fuzzi.modulemap */,
+				AD80198D2A38A0B7B94FD4E59B5EED13 /* Fuzzi.xcconfig */,
+				5E95E82A4083BBD6B7B26ECC400C5979 /* Fuzzi-dummy.m */,
+				2D4F5DD29D27895BB2490B7F1F52B4DC /* Fuzzi-prefix.pch */,
+				D366952829355A46A038F0AE00042FD9 /* Fuzzi-umbrella.h */,
+				A0E850A225C329BEC64CA654C30A8967 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/Fuzzi";
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -195,28 +209,14 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		D80151C001D1E09013229428852009D3 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				28B6CB2FE6C08186F405FBB2086FF629 /* Fuzzi.modulemap */,
-				A499FDF7E277B99F5AB701E92D0F0C52 /* Fuzzi.xcconfig */,
-				DC883B99E007CF7585BD3D1289ABBC8D /* Fuzzi-dummy.m */,
-				B84945E705285BEE42B63C16A9B280EE /* Fuzzi-prefix.pch */,
-				B0F516F3355B941BA7EB0997E6E86C3C /* Fuzzi-umbrella.h */,
-				53720FA2767DA8CBA86DC99D2E244D56 /* Info.plist */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/Fuzzi";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		0655D3B09D6481FDEE278AFEA1D9E887 /* Headers */ = {
+		CEB5B8E5FF59564A8A63D12E190B026C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04A5D81FFAB2461AF91F1470AFA6C0D2 /* Fuzzi-umbrella.h in Headers */,
+				EBCB6DD0B073D5B9D8D6565BEB909D44 /* Fuzzi-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,23 +239,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		3031089F083250BE690CC811C1844FAF /* Fuzzi */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F1038EF850A2B9EA43DAE9B4BDF1C70E /* Build configuration list for PBXNativeTarget "Fuzzi" */;
-			buildPhases = (
-				27E89BEB43B67451F73F0695C96337BB /* Sources */,
-				7D768A569A84BA1FD53EBA03C5C6FBF6 /* Frameworks */,
-				0655D3B09D6481FDEE278AFEA1D9E887 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = Fuzzi;
-			productName = Fuzzi;
-			productReference = C4F02104FDEF9D05AE627A0B3DAB124C /* Fuzzi.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		711EEE7F1BADDA005F2F066B54A08008 /* Pods-Fuzzi_Example */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EE795B942E67E9F54909CCA3BB913641 /* Build configuration list for PBXNativeTarget "Pods-Fuzzi_Example" */;
@@ -291,6 +274,23 @@
 			productReference = DD29B32AFDB296A6D86CABFAEF82BBE5 /* Pods_Fuzzi_Tests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		B694663B2B3F32BAC0CBB31F1383D907 /* Fuzzi */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A864EBF0C7EAAD91DDD4F3A9B9C27FC /* Build configuration list for PBXNativeTarget "Fuzzi" */;
+			buildPhases = (
+				CA47356723A13B4711322C4D15EB979B /* Sources */,
+				15E7C5379EA96958ECE36CAD3F8CA6B1 /* Frameworks */,
+				CEB5B8E5FF59564A8A63D12E190B026C /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Fuzzi;
+			productName = Fuzzi;
+			productReference = C4F02104FDEF9D05AE627A0B3DAB124C /* Fuzzi.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -312,7 +312,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3031089F083250BE690CC811C1844FAF /* Fuzzi */,
+				B694663B2B3F32BAC0CBB31F1383D907 /* Fuzzi */,
 				711EEE7F1BADDA005F2F066B54A08008 /* Pods-Fuzzi_Example */,
 				A7011434DEFC7DF6A7B750C22CE94E59 /* Pods-Fuzzi_Tests */,
 			);
@@ -328,13 +328,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		27E89BEB43B67451F73F0695C96337BB /* Sources */ = {
+		CA47356723A13B4711322C4D15EB979B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E564B661FAA08B000163B65 /* ParalellStuff.swift in Sources */,
-				29E2EEAC7A6EE1E79C1E3B90E9154371 /* Fuzzi-dummy.m in Sources */,
-				719EBD8B35A8C8FB92BF3FD1E6FE7C13 /* Searchable.swift in Sources */,
+				059EDAD2AF93277B676C794033021ED1 /* Fuzzi-dummy.m in Sources */,
+				A5AC5958CD9124B1762AA87680834B33 /* ParalellStuff.swift in Sources */,
+				1718A59D84367B23420D7BDDEF252B4B /* Searchable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,44 +352,12 @@
 		36E5F95861CD80592A724971F48B037C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Fuzzi;
-			target = 3031089F083250BE690CC811C1844FAF /* Fuzzi */;
+			target = B694663B2B3F32BAC0CBB31F1383D907 /* Fuzzi */;
 			targetProxy = C9D8A7A64253A1A87F8C5B0A18965B34 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		21B3966F21C579893A1CF732A6984CF0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A499FDF7E277B99F5AB701E92D0F0C52 /* Fuzzi.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Fuzzi/Fuzzi-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Fuzzi/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Fuzzi/Fuzzi.modulemap";
-				PRODUCT_NAME = Fuzzi;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		27BF0C03B583DCF4DCA321BBB1A43F00 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AF0A2CEB09287A1CAA9EEB01E616641C /* Pods-Fuzzi_Example.debug.xcconfig */;
@@ -572,9 +540,9 @@
 			};
 			name = Release;
 		};
-		91DD984684224F119921EE32F2398708 /* Debug */ = {
+		777CE41D4CBC6ACF49486BBE2AC1E9E2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A499FDF7E277B99F5AB701E92D0F0C52 /* Fuzzi.xcconfig */;
+			baseConfigurationReference = AD80198D2A38A0B7B94FD4E59B5EED13 /* Fuzzi.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -595,13 +563,14 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 		985C162B4CE5C022631660841D7E4CAC /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -669,9 +638,49 @@
 			};
 			name = Release;
 		};
+		EA967AE13FD3A8D4E566A1BAD84CA4FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD80198D2A38A0B7B94FD4E59B5EED13 /* Fuzzi.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Fuzzi/Fuzzi-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Fuzzi/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Fuzzi/Fuzzi.modulemap";
+				PRODUCT_NAME = Fuzzi;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2A864EBF0C7EAAD91DDD4F3A9B9C27FC /* Build configuration list for PBXNativeTarget "Fuzzi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA967AE13FD3A8D4E566A1BAD84CA4FA /* Debug */,
+				777CE41D4CBC6ACF49486BBE2AC1E9E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -695,15 +704,6 @@
 			buildConfigurations = (
 				27BF0C03B583DCF4DCA321BBB1A43F00 /* Debug */,
 				B44BBA2DDE494436914DF2EF1DCB73F0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F1038EF850A2B9EA43DAE9B4BDF1C70E /* Build configuration list for PBXNativeTarget "Fuzzi" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				91DD984684224F119921EE32F2398708 /* Debug */,
-				21B3966F21C579893A1CF732A6984CF0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

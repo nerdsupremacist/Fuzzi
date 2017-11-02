@@ -17,19 +17,62 @@ extension SearchOptions {
     public static let standard: SearchOptions = [.removeUnuseful, .sortByGrade, .caseInsensitive]
 }
 
-public struct SearchableProperty<Parent> {
-    let path: KeyPath<Parent, String>
-    let weight: Int
-    
-    public init(path: KeyPath<Parent, String>, weight: Int = 1) {
-        self.path = path
-        self.weight = weight
-    }
+public struct Tree<Value: Searchable>: Codable {
+    let word: String
+    var values: Set<Value>
+    var children: [Int : Tree<Value>]
 }
 
-public protocol Searchable {
-    typealias Property = SearchableProperty<Self>
-    var searchableProperties: [Property] { get }
+extension Tree {
+    
+    init(word: String) {
+        self.init(word: word, values: [], children: [:])
+    }
+    
+    private mutating func append(value: Value, for word: String) {
+        guard word != self.word else {
+            return values.formUnion([value])
+        }
+        let distance = self.word.distance(to: word)
+        children[distance, default: .init(word: word)].append(value: value, for: word)
+    }
+    
+    func appending(value: Value) -> Tree<Value> {
+        var tree = self
+        value.words.forEach { tree.append(value: value, for: $0) }
+        return tree
+    }
+    
+    func searchWord(query: String, maxDistance: Int = 4, relevantAfter: Double = 0.4) -> Set<Value> {
+        
+        let currentDistance = word.distance(to: query)
+        let upperAllowed = currentDistance + maxDistance
+        let lowerAllowed = max(0, currentDistance - maxDistance)
+        let others = (lowerAllowed...upperAllowed).flatMap { children[$0]?.searchWord(query: query, maxDistance: maxDistance) ?? [] }
+        let coefficient = Search.coefficient(value: word, using: query)
+        return Set(others + (coefficient <= relevantAfter ? values : []))
+    }
+    
+    public func search(query: String, maxDistance: Int = 4, relevantAfter: Double = 0.4) -> Set<Value> {
+        return query.components(separatedBy: " ").reduce([]) { set, word in
+            return set.union(searchWord(query: word, maxDistance: maxDistance, relevantAfter: relevantAfter))
+        }
+    }
+    
+}
+
+public protocol Searchable: Codable, Hashable {
+    var searchableProperties: [KeyPath<Self, String>] { get }
+}
+
+extension Searchable {
+    
+    var words: Set<String> {
+        return Set(searchableProperties.flatMap { path in
+            return self[keyPath: path].components(separatedBy: " ")
+        })
+    }
+    
 }
 
 public struct SearchResult<Value> {
@@ -37,87 +80,49 @@ public struct SearchResult<Value> {
     public let score: Double
 }
 
-extension Sequence where Element == String {
-    
-    public func search(for key: String, options: SearchOptions = .standard, relevantAfter: Double = 0.6) -> [SearchResult<String>] {
-        
-        guard !options.contains(.removeUnuseful) else {
-            return search(for: key, options: options.subtracting(.removeUnuseful)).filter { $0.score >= relevantAfter }
-        }
-        guard !options.contains(.sortByGrade) else {
-            return search(for: key, options: options.subtracting(.sortByGrade)).sorted { $0.score <= $1.score }
-        }
-        return parallelMap { Search.score(value: $0, using: key, options: options) }
-    }
-    
-    public func simpleSearch(for key: String, options: SearchOptions = .standard) -> [String] {
-        return search(for: key, options: options).map { $0.value }
-    }
-    
-}
-
 extension Sequence where Element: Searchable {
     
-    public func search(for key: String, options: SearchOptions = .standard, relevantAfter: Double = 0.6) -> [SearchResult<Element>] {
-        
-        guard !options.contains(.removeUnuseful) else {
-            return search(for: key, options: options.subtracting(.removeUnuseful)).filter { $0.score >= relevantAfter }
+    public func tree() -> Tree<Element>? {
+        guard let firstWord = flatMap({ $0.words }).first else {
+            return nil
         }
-        guard !options.contains(.sortByGrade) else {
-            return search(for: key, options: options.subtracting(.sortByGrade)).sorted { $0.score <= $1.score }
+        let tree = Tree<Element>(word: firstWord)
+        return reduce(tree) { tree, value in
+            return tree.appending(value: value)
         }
-        return parallelMap { Search.score(value: $0, using: key, options: options) }
-    }
-    
-    public func simpleSearch(for key: String, options: SearchOptions = .standard) -> [Element] {
-        return search(for: key, options: options).map { $0.value }
     }
     
 }
 
 enum Search {
     
-    static func score(value: String, using key: String, options: SearchOptions = .standard) -> SearchResult<String> {
+    static func coefficient(value: String, using key: String, options: SearchOptions = .standard) -> Double {
         
         guard !options.contains(.caseInsensitive) else {
             
-            return score(value: value.lowercased(),
-                         using: key.lowercased(),
-                         options: options.subtracting(.caseInsensitive))
+            return coefficient(value: value.lowercased(),
+                               using: key.lowercased(),
+                               options: options.subtracting(.caseInsensitive))
         }
         let distance = key.distance(to: value)
         let maxCount = max(value.count, key.count)
-        let coefficient = Double(distance) / Double(maxCount)
-        return SearchResult(value: value, score: 1.0 - coefficient)
-    }
-    
-    static func score<Value: Searchable>(value: Value, using key: String, options: SearchOptions = .standard) -> SearchResult<Value> {
-        
-        let totalWeights = value.searchableProperties.reduce(0) { $0 + $1.weight }
-        
-        let results = value.searchableProperties.parallelMap { property -> Double in
-            let coefficient = Double(property.weight) / Double(totalWeights)
-            let score = Search.score(value: value[keyPath: property.path], using: key, options: options).score
-            return coefficient * score
-        }
-        
-        return SearchResult(value: value, score: results.reduce(0.0, +))
+        return Double(distance) / Double(maxCount)
     }
     
 }
 
 extension String {
     
-    func distance(to other: String) -> Int {
+    public func distance(to other: String) -> Int {
         // Dynamic programming method to read the distance
         guard count > 0 else { return other.count }
         guard other.count > 0 else { return count }
-        let vector = Array(0..<Int(count))
+        let vector = Array(1...Int(count))
         let lastVector = other.enumerated().reduce(vector) { lastVector, current in
             return self.enumerated().reduce([]) { newVector, item in
-                let up = newVector.last ?? current.offset
+                let up = newVector.last ?? (current.offset + 1)
                 let left = lastVector[item.offset]
-                let diagonal = item.offset > 0 ? lastVector[item.offset - 1] : 0
+                let diagonal = item.offset > 0 ? lastVector[item.offset - 1] : current.offset
                 let cost = current.element != item.element ? 1 : 0
                 return newVector + [min(up + 1, min(left + 1, diagonal + cost))]
             }
