@@ -48,7 +48,9 @@ extension Tree {
         let currentDistance = word.distance(to: query)
         let upperAllowed = currentDistance + maxDistance
         let lowerAllowed = max(0, currentDistance - maxDistance)
-        let others = (lowerAllowed...upperAllowed).flatMap { children[$0]?.searchWord(query: query, maxDistance: maxDistance) ?? [] }
+        
+        let range = (lowerAllowed...upperAllowed)
+        let others = range.parallelFlatMap { self.children[$0]?.searchWord(query: query, maxDistance: maxDistance) ?? [] }
         let coefficient = Search.coefficient(value: word, using: query)
         return Set(others + (coefficient <= relevantAfter ? values : []))
     }
