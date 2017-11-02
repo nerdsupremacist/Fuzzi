@@ -17,13 +17,13 @@ extension SearchOptions {
     public static let standard: SearchOptions = [.removeUnuseful, .sortByGrade, .caseInsensitive]
 }
 
-public struct Tree<Value: Searchable>: Codable {
+public struct SearchTree<Value: Searchable>: Codable {
     let word: String
     var values: Set<Value>
-    var children: [Int : Tree<Value>]
+    var children: [Int : SearchTree<Value>]
 }
 
-extension Tree {
+extension SearchTree {
     
     init(word: String) {
         self.init(word: word, values: [], children: [:])
@@ -41,7 +41,7 @@ extension Tree {
         value.words.forEach { append(value: value, for: $0) }
     }
     
-    public func appending(value: Value) -> Tree<Value> {
+    public func appending(value: Value) -> SearchTree<Value> {
         var tree = self
         tree.append(value)
         return tree
@@ -88,11 +88,11 @@ public struct SearchResult<Value> {
 
 extension Sequence where Element: Searchable {
     
-    public func tree() -> Tree<Element>? {
+    public func tree() -> SearchTree<Element>? {
         guard let firstWord = flatMap({ $0.words }).first else {
             return nil
         }
-        let tree = Tree<Element>(word: firstWord)
+        let tree = SearchTree<Element>(word: firstWord)
         return reduce(tree) { tree, value in
             return tree.appending(value: value)
         }
