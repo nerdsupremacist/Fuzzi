@@ -10,17 +10,52 @@ public struct SearchOptions: OptionSet {
 }
 
 extension SearchOptions {
-    public static let removeUnuseful = SearchOptions(rawValue: 1 << 0)
-    public static let sortByGrade = SearchOptions(rawValue: 1 << 1)
-    public static let caseInsensitive = SearchOptions(rawValue: 1 << 2)
+    public static let sortByScore = SearchOptions(rawValue: 1 << 0)
+    public static let caseInsensitive = SearchOptions(rawValue: 1 << 1)
 
-    public static let standard: SearchOptions = [.removeUnuseful, .sortByGrade, .caseInsensitive]
+    public static let standard: SearchOptions = [.sortByScore, .caseInsensitive]
 }
 
 public struct SearchTree<Value: Searchable>: Codable {
     let word: String
-    var values: Set<Value>
+    var values: [Value]
     var children: [Int : SearchTree<Value>]
+}
+
+extension SearchTree {
+    
+    public struct SearchResult {
+        
+        public struct Occurence {
+            public let word: String
+            public let coefficient: Double
+        }
+        
+        public let value: Value
+        public fileprivate(set) var occurences: [Occurence]
+    }
+    
+}
+
+extension SearchTree.SearchResult {
+    
+    init(value: Value) {
+        self.value = value
+        occurences = []
+    }
+    
+    mutating func append(_ occurence: Occurence) {
+        occurences.append(occurence)
+    }
+    
+    public var sum: Double {
+        return occurences.reduce(0.0) { $0 + $1.coefficient }
+    }
+    
+    public var score: Double {
+        return occurences.enumerated().reduce(0.0) { $0 + $1.element.coefficient + pow(2, -Double($1.offset)) } / 2.0
+    }
+    
 }
 
 extension SearchTree {
@@ -31,7 +66,7 @@ extension SearchTree {
     
     private mutating func append(value: Value, for word: String) {
         guard word != self.word else {
-            return values.formUnion([value])
+            return values.append(value)
         }
         let distance = self.word.distance(to: word)
         children[distance, default: .init(word: word)].append(value: value, for: word)
@@ -47,22 +82,69 @@ extension SearchTree {
         return tree
     }
     
-    func searchWord(query: String, maxDistance: Int = 4, relevantAfter: Double = 0.4) -> Set<Value> {
+    func searchWord(accumulator: [Value : SearchResult],
+                    query: String,
+                    maxDistance: Int,
+                    relevantAfter: Double,
+                    options: SearchOptions) -> [Value : SearchResult] {
+        
+        var accumulator = accumulator
         
         let currentDistance = word.distance(to: query)
         let upperAllowed = currentDistance + maxDistance
         let lowerAllowed = max(0, currentDistance - maxDistance)
         
+        
+        let coefficient = Search.coefficient(value: query, using: word, options: options)
+        let occurence = SearchResult.Occurence(word: word, coefficient: coefficient)
+        
+        if currentDistance <= maxDistance, coefficient >= relevantAfter {
+            values.forEach { value in
+                accumulator[value, default: .init(value: value)].append(occurence)
+            }
+        }
+        
         let range = (lowerAllowed...upperAllowed)
-        let others = range.flatMap { self.children[$0]?.searchWord(query: query, maxDistance: maxDistance) ?? [] }
-        let coefficient = Search.coefficient(value: word, using: query)
-        return Set(others + (coefficient <= relevantAfter ? values : []))
+        let children = range.flatMap { self.children[$0] }
+        return children.reduce(accumulator) { $1.searchWord(accumulator: $0,
+                                                            query: query,
+                                                            maxDistance: maxDistance,
+                                                            relevantAfter: relevantAfter,
+                                                            options: options) }
     }
     
-    public func search(query: String, maxDistance: Int = 4, relevantAfter: Double = 0.4) -> Set<Value> {
-        return query.components(separatedBy: " ").reduce([]) { set, word in
-            return set.union(searchWord(query: word, maxDistance: maxDistance, relevantAfter: relevantAfter))
+    public func search(query: String,
+                       maxDistance: Int = 4,
+                       relevantAfter: Double = 0.6,
+                       options: SearchOptions = .standard) -> [SearchResult] {
+        
+        guard !options.contains(.sortByScore) else {
+            
+            return search(query: query,
+                          maxDistance: maxDistance,
+                          relevantAfter: relevantAfter,
+                          options: options.subtracting(.sortByScore)).sorted { $0.score >= $1.score }
         }
+        
+        let dictionary =  query.components(separatedBy: " ").reduce([:]) { dict, word in
+            return searchWord(accumulator: dict,
+                              query: word,
+                              maxDistance: maxDistance,
+                              relevantAfter: relevantAfter,
+                              options: options)
+        }
+        return dictionary.map { $0.value }
+    }
+    
+    public func search(query: String,
+                       maxDistance: Int = 4,
+                       relevantAfter: Double = 0.6,
+                       options: SearchOptions = .standard) -> [Value] {
+        
+        return search(query: query,
+                      maxDistance: maxDistance,
+                      relevantAfter: relevantAfter,
+                      options: options).map { $0.value }
     }
     
 }
@@ -81,11 +163,6 @@ extension Searchable {
     
 }
 
-public struct SearchResult<Value> {
-    public let value: Value
-    public let score: Double
-}
-
 extension Sequence where Element: Searchable {
     
     public func searchTree() -> SearchTree<Element>? {
@@ -102,24 +179,21 @@ extension Sequence where Element: Searchable {
 
 enum Search {
     
-    static func coefficient(value: String, using key: String, options: SearchOptions = .standard) -> Double {
-        
-        guard !options.contains(.caseInsensitive) else {
-            
-            return coefficient(value: value.lowercased(),
-                               using: key.lowercased(),
-                               options: options.subtracting(.caseInsensitive))
-        }
-        let distance = key.distance(to: value)
+    static func coefficient(value: String, using key: String, options: SearchOptions) -> Double {
+        let distance = key.distance(to: value, options: options)
         let maxCount = max(value.count, key.count)
-        return Double(distance) / Double(maxCount)
+        return 1.0 - Double(distance) / Double(maxCount)
     }
     
 }
 
 extension String {
     
-    public func distance(to other: String) -> Int {
+    public func distance(to other: String, options: SearchOptions = .standard) -> Int {
+        
+        guard !options.contains(.caseInsensitive) else {
+            return lowercased().distance(to: other.lowercased(), options: options.subtracting(.caseInsensitive))
+        }
         // Dynamic programming method to read the distance
         guard count > 0 else { return other.count }
         guard other.count > 0 else { return count }
