@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Fuzzi'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'Locally searching in Swift made simple (and fuzzily)'
 
   s.description      = 'Locally searching in Swift made simple (and fuzzily)'
