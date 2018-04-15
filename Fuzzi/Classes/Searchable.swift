@@ -105,7 +105,7 @@ extension SearchTree {
         }
         
         let range = (lowerAllowed...upperAllowed)
-        let children = range.flatMap { self.children[$0] }
+        let children = range.compactMap { self.children[$0] }
         return children.reduce(accumulator) { $1.searchWord(accumulator: $0,
                                                             query: query,
                                                             maxDistance: maxDistance,
