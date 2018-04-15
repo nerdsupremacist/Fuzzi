@@ -133,7 +133,7 @@ extension SearchTree {
                               relevantAfter: relevantAfter,
                               options: options)
         }
-        return dictionary.map { $0.value }
+        return Array(dictionary.values)
     }
     
     public func search(query: String,
