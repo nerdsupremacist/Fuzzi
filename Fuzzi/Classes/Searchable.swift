@@ -16,11 +16,15 @@ extension SearchOptions {
     public static let standard: SearchOptions = [.sortByScore, .caseInsensitive]
 }
 
-public struct SearchTree<Value: Searchable>: Codable {
+public struct SearchTree<Value: Searchable> {
     let word: String
     var values: [Value]
     var children: [Int : SearchTree<Value>]
 }
+
+extension SearchTree: Encodable where Value: Encodable { }
+
+extension SearchTree: Decodable where Value: Decodable { }
 
 extension SearchTree {
     
@@ -149,7 +153,7 @@ extension SearchTree {
     
 }
 
-public protocol Searchable: Codable, Hashable {
+public protocol Searchable: Hashable {
     var searchableProperties: [KeyPath<Self, String>] { get }
 }
 
