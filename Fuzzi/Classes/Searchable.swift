@@ -154,15 +154,13 @@ extension SearchTree {
 }
 
 public protocol Searchable: Hashable {
-    var searchableProperties: [KeyPath<Self, String>] { get }
+    var searchableProperties: [String] { get }
 }
 
 extension Searchable {
     
     var words: Set<String> {
-        return Set(searchableProperties.flatMap { path in
-            return self[keyPath: path].components(separatedBy: " ")
-        })
+        return Set(searchableProperties.flatMap { $0.components(separatedBy: " ") })
     }
     
 }
