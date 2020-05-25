@@ -41,7 +41,7 @@ extension Sequence {
             return .byAppliying(to: group, value: transform(element))
         }
         group.wait()
-        return results.flatMap { $0.value }
+        return results.compactMap { $0.value }
     }
     
     func parallelFlatMap<SubSequence: Sequence>(_ transform: @escaping (Element) -> SubSequence) -> [SubSequence.Element] {
