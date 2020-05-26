@@ -3,7 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "Fuzzi",
-    platforms: [.iOS(.v10), .macOS(.v10_12)],
+    platforms: [.iOS(.v10), .macOS(.v10_15)],
     products: [
         .library(name: "Fuzzi",
                  targets: ["Fuzzi"]),
@@ -11,7 +11,8 @@ let package = Package(
     dependencies: [],
     targets: [
         .target(name: "Fuzzi",
-                dependencies: [],
-                path: "Fuzzi/Classes/")
+                dependencies: []),
+        .testTarget(name: "FuzziTest",
+                    dependencies: ["Fuzzi"]),
     ]
 )

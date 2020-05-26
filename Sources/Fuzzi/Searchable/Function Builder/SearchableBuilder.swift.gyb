@@ -1,0 +1,27 @@
+
+import Foundation
+
+@_functionBuilder
+public struct SearchableBuilder { }
+
+extension SearchableBuilder {
+
+    public static func buildBlock() -> EmptySearchable {
+        return EmptySearchable()
+    }
+
+    public static func buildBlock<Content : Searchable>(_ content: Content) -> Content {
+        return content
+    }
+
+    % for numberOfComponents in range(3, 22):
+    %{ generics = ", ".join(["C" + str(i) + " : Searchable" for i in range(1, numberOfComponents)]) }%
+    %{ tupleGenerics = ", ".join(["C" + str(i) for i in range(1, numberOfComponents)]) }%
+    %{ arguments = ", ".join(["_ c" + str(i) + ": C" + str(i) + "" for i in range(1, numberOfComponents)]) }%
+    %{ decomposition = ", ".join(["c" + str(i) + ".eraseToAnySearchable()" for i in range(1, numberOfComponents)]) }%
+    public static func buildBlock<${generics}>(${arguments}) -> TupleSearchable<(${tupleGenerics})> {
+        return TupleSearchable(values: [${decomposition}])
+    }
+
+    % end
+}
