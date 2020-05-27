@@ -1,16 +1,10 @@
 
 import Foundation
 
-public struct TupleSearchable<T>: Searchable, InternalSearchable {
+public struct TupleSearchable<T>: Searchable {
     let values: [AnySearchable]
 
-    public var body: Never {
-        fatalError("Body not implemented")
-    }
-
-    func components(includeAll: Bool) -> [String : Double] {
-        return values.reduce([:]) { accumulator, searchable in
-            accumulator.merging(searchable.components(includeAll: includeAll)) { $0 + $1 }
-        }
+    public var body: some Searchable {
+        values
     }
 }
