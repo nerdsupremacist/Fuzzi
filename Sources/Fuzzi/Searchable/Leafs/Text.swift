@@ -10,10 +10,10 @@ extension String {
 }
 
 public struct Text: Searchable, InternalLeafSearchable {
-    let components: Set<String>
+    let components: [String : Double]
 
     public init(_ string: String) {
-        self.components = [string]
+        self.components = [string : 1]
     }
 
     public var body: Never {

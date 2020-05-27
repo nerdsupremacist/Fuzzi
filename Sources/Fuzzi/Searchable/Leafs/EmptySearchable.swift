@@ -2,7 +2,7 @@
 import Foundation
 
 public struct EmptySearchable: Searchable, InternalLeafSearchable {
-    let components: Set<String> = []
+    let components: [String : Double] = [:]
 
     public init() { }
     

@@ -8,7 +8,9 @@ public struct TupleSearchable<T>: Searchable, InternalSearchable {
         fatalError("Body not implemented")
     }
 
-    func components(includeAll: Bool) -> Set<String> {
-        return values.reduce([]) { $0.union($1.components(includeAll: includeAll)) }
+    func components(includeAll: Bool) -> [String : Double] {
+        return values.reduce([:]) { accumulator, searchable in
+            accumulator.merging(searchable.components(includeAll: includeAll)) { $0 + $1 }
+        }
     }
 }

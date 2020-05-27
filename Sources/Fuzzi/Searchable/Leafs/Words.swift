@@ -10,11 +10,11 @@ extension String {
 }
 
 public struct Words: Searchable, InternalLeafSearchable {
-    let components: Set<String>
+    let components: [String : Double]
 
     public init(_ string: String) {
         let characterSet = CharacterSet.alphanumerics.inverted.union(.whitespacesAndNewlines)
-        self.components = Set(string.components(separatedBy: characterSet).filter { !$0.isEmpty })
+        self.components = Dictionary(string.components(separatedBy: characterSet).filter { !$0.isEmpty }.map { ($0, 1) }) { $0 + $1 }
     }
 
     public var body: Never {

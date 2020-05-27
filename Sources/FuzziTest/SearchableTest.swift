@@ -68,7 +68,7 @@ class SearchableTest: XCTestCase {
             "Hello",
             "World",
         ]
-        let componentsInTest = components(for: test)
+        let componentsInTest = Set(components(for: test).keys)
 
         XCTAssertEqual(expectedComponents, componentsInTest)
     }
@@ -98,7 +98,7 @@ class SearchableTest: XCTestCase {
             "rl",
             "ld",
         ]
-        let componentsInTest = components(for: test)
+        let componentsInTest = Set(components(for: test).keys)
 
         XCTAssertEqual(expectedComponents, componentsInTest)
     }

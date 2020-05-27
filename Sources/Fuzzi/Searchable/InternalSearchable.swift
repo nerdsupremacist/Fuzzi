@@ -2,5 +2,5 @@
 import Foundation
 
 protocol InternalSearchable {
-    func components(includeAll: Bool) -> Set<String>
+    func components(includeAll: Bool) -> [String : Double]
 }

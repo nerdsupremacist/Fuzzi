@@ -1,7 +1,7 @@
 
 import Foundation
 
-func components<S : Searchable>(for searchable: S, includeAll: Bool = true) -> Set<String> {
+func components<S : Searchable>(for searchable: S, includeAll: Bool = true) -> [String : Double] {
     if S.Body.self == Never.self {
         switch searchable {
         case let searchable as InternalLeafSearchable:

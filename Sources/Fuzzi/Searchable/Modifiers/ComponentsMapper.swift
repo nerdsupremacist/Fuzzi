@@ -20,18 +20,38 @@ private struct ComponentsMapper<Content: Searchable>: Searchable, InternalSearch
         fatalError("Body not implemented")
     }
 
-    func components(includeAll: Bool) -> Set<String> {
-        let words = Fuzzi.components(for: content, includeAll: false)
+    func components(includeAll: Bool) -> [String : Double] {
+        let components = Fuzzi.components(for: content, includeAll: false)
 
         if includeAll {
-            let addititonal = words.flatMap(transform)
+            let addititonal = components.flatMapKeys(transform) { $0 + $1 }
             if includeOriginal {
-                return Fuzzi.components(for: content, includeAll: true).union(addititonal)
+                return Fuzzi.components(for: content, includeAll: true).merging(addititonal) { max($0, $1) }
             } else {
-                return Set(addititonal)
+                return addititonal
             }
         }
 
-        return words
+        return components
     }
+}
+
+extension Dictionary {
+
+    public func flatMapKeys<SegmentOfResult : Sequence>(_ transform: (Key) throws -> SegmentOfResult,
+                                                        _ combine: (Value, Value) -> Value) rethrows -> [SegmentOfResult.Element : Value] {
+
+        var dictionay: [SegmentOfResult.Element : Value] = [:]
+        for (key, value) in self {
+            for newKey in try transform(key) {
+                if let previousValue = dictionay[newKey] {
+                    dictionay[newKey] = combine(previousValue, value)
+                } else {
+                    dictionay[newKey] = value
+                }
+            }
+        }
+        return dictionay
+    }
+
 }

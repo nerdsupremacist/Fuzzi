@@ -2,7 +2,7 @@
 import Foundation
 
 public struct AnySearchable: Searchable, InternalSearchable {
-    private let _components: (Bool) -> Set<String>
+    private let _components: (Bool) -> [String : Double]
 
     public init<S : Searchable>(_ searchable: S) {
         _components = { Fuzzi.components(for: searchable, includeAll: $0) }
@@ -12,7 +12,7 @@ public struct AnySearchable: Searchable, InternalSearchable {
         fatalError("Body not implemented")
     }
 
-    func components(includeAll: Bool) -> Set<String> {
+    func components(includeAll: Bool) -> [String : Double] {
         return _components(includeAll)
     }
 }

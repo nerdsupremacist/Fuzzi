@@ -5,7 +5,7 @@ struct BKSearchTree<ID: Hashable, Value: Searchable>: MutableSearchTree {
     typealias Next = BKSearchTree<ID, Value>
 
     let component: String
-    var values: [ID]
+    var values: [(ID, Double)]
     var children: [Int : BKSearchTree<ID, Value>]
 }
 
@@ -15,16 +15,16 @@ extension BKSearchTree {
         self.init(component: component, values: [], children: [:])
     }
 
-    private mutating func append(id: ID, for component: String) {
+    private mutating func append(id: ID, for component: String, weight: Double) {
         guard component != self.component else {
-            return values.append(id)
+            return values.append((id, weight))
         }
         let distance = self.component.distance(to: component)
-        children[distance, default: .init(component: component)].append(id: id, for: component)
+        children[distance, default: .init(component: component)].append(id: id, for: component, weight: weight)
     }
 
     mutating func append(id: ID, value: Value) {
-        components(for: value).forEach { append(id: id, for: $0) }
+        components(for: value).forEach { append(id: id, for: $0.key, weight: $0.value) }
     }
 
     func appending(id: ID, value: Value) -> BKSearchTree<ID, Value> {
@@ -47,10 +47,11 @@ extension BKSearchTree {
 
 
         let coefficient = Search.coefficient(value: query, using: component, options: options)
-        let occurence = Occurence(component: component, coefficient: coefficient)
 
         if currentDistance <= maxDistance, coefficient >= relevantAfter {
             values.forEach { value in
+                let (value, weight) = value
+                let occurence = Occurence(component: component, coefficient: coefficient * weight)
                 accumulator[value, default: .init(value: value)].append(occurence)
             }
         }

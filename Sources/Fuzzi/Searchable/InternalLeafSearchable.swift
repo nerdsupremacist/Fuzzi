@@ -2,12 +2,12 @@
 import Foundation
 
 protocol InternalLeafSearchable: InternalSearchable {
-    var components: Set<String> { get }
+    var components: [String : Double] { get }
 }
 
 extension InternalLeafSearchable {
 
-    func components(includeAll: Bool) -> Set<String> {
+    func components(includeAll: Bool) -> [String : Double] {
         return components
     }
 
