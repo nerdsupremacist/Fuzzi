@@ -20,7 +20,7 @@ public struct AnySearchable: Searchable, InternalSearchable {
 
 extension Searchable {
 
-    func eraseToAnySearchable() -> AnySearchable {
+    public func eraseToAnySearchable() -> AnySearchable {
         return AnySearchable(self)
     }
 
