@@ -71,7 +71,6 @@ extension BKSearchTree {
                        options: SearchOptions) -> [SearchResult<ID>] {
 
         guard !options.contains(.sortByScore) else {
-
             return performSearch(query: query,
                                  maxDistance: maxDistance,
                                  relevantAfter: relevantAfter,

@@ -33,3 +33,13 @@ extension Sequence where Element: Hashable {
     }
 
 }
+
+extension Sequence where Element: Identifiable {
+
+    public func searchTree<Content : Searchable>(@SearchableBuilder content: (Element) -> Content) -> AnySearchTree<Element> {
+        let keyLookup = Dictionary(map { ($0.id, $0) }) { $1 }
+        let dictionary = keyLookup.mapValues { content($0) }
+        return dictionary.keySearchTree().map { keyLookup[$0]! }
+    }
+
+}
