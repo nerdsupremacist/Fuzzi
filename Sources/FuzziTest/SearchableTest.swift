@@ -41,8 +41,8 @@ class SearchableTest: XCTestCase {
         ]
 
         let tree = posts.searchTree()
-        let max = tree.search(query: "Max") as [Post]
-        let turtle = tree.search(query: "Turtlo") as [Post]
+        let max = tree.search(query: "Max")
+        let turtle = tree.search(query: "Turtlo")
 
         XCTAssertEqual(posts[2], max.first)
         XCTAssertEqual([posts[1]], turtle)
@@ -100,6 +100,68 @@ class SearchableTest: XCTestCase {
         let componentsInTest = Set(components(for: test).keys)
 
         XCTAssertEqual(expectedComponents, componentsInTest)
+    }
+
+    func testLongList() {
+        let path = "/Users/mathiasquintero/Downloads/words_alpha.txt"
+
+        guard FileManager.default.fileExists(atPath: path) else {
+            print("File not found. Skipping test")
+            return
+        }
+
+        let url = URL(fileURLWithPath: path)
+        let data = try! Data(contentsOf: url)
+        guard let string = String(data: data, encoding: .utf8) else { return }
+        let words = string.components(separatedBy: .whitespacesAndNewlines).filter { !$0.isEmpty }
+        let first = words.dropLast(words.count - 10_000)
+
+        print("Building Tree with \(first.count) words")
+
+        let (tree, treeTime) = measureResult {
+            first.searchTree { word in
+                if !word.isEmpty {
+                    Text(word)
+                }
+            }
+        }
+
+        print("Took \(treeTime)s to build a tree")
+
+        let (results, searchTime) = measureResult {
+            tree.search(query: "aardvark")
+        }
+        print("Took \(searchTime) to search through huge list")
+        print(results)
+    }
+
+}
+
+func measureResult<T>(_ block: () throws -> T) rethrows -> (T, TimeInterval) {
+    let start = CFAbsoluteTimeGetCurrent()
+    let result = try block()
+    let end = CFAbsoluteTimeGetCurrent()
+    return (result, end - start)
+}
+
+struct Repo {
+  let name: String
+  let description: String
+  let link: URL
+}
+
+extension Repo: Searchable {
+
+    var body: some Searchable {
+        Text(name)
+            .enablePrefixes()
+            .weighted(scale: 5)
+
+        Words(description)
+            .weighted(scale: 0.5)
+
+        Text(link.absoluteString)
+            .enableInfixes()
     }
 
 }

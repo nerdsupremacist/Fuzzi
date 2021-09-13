@@ -22,3 +22,14 @@ extension Sequence where Element: Searchable {
     }
 
 }
+
+extension Sequence where Element: Hashable {
+
+    public func searchTree<Content : Searchable>(@SearchableBuilder content: (Element) -> Content) -> AnySearchTree<Element> {
+        let dictionary = Dictionary(map { ($0, [content($0)]) }) { lhs, rhs in
+            return lhs + rhs
+        }
+        return dictionary.keySearchTree()
+    }
+
+}

@@ -2,7 +2,7 @@
 import Foundation
 
 struct EmptySearchTree<ID: Hashable, Value: Searchable>: MutableSearchTree {
-    func search(query: String, maxDistance: Int, relevantAfter: Double, options: SearchOptions) -> [SearchResult<ID>] {
+    func performSearch(query: String, maxDistance: Int, relevantAfter: Double, options: SearchOptions) -> [SearchResult<ID>] {
         return []
     }
 

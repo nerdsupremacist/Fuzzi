@@ -65,17 +65,17 @@ extension BKSearchTree {
                                                             options: options) }
     }
 
-    func search(query: String,
+    func performSearch(query: String,
                        maxDistance: Int,
                        relevantAfter: Double,
                        options: SearchOptions) -> [SearchResult<ID>] {
 
         guard !options.contains(.sortByScore) else {
 
-            return search(query: query,
-                          maxDistance: maxDistance,
-                          relevantAfter: relevantAfter,
-                          options: options.subtracting(.sortByScore)).sorted { $0.score >= $1.score }
+            return performSearch(query: query,
+                                 maxDistance: maxDistance,
+                                 relevantAfter: relevantAfter,
+                                 options: options.subtracting(.sortByScore)).sorted { $0.score >= $1.score }
         }
 
         let dictionary = query.components(separatedBy: " ").reduce([:]) { dict, word in
