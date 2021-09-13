@@ -2,16 +2,15 @@
 import Foundation
 
 public protocol MutableSearchTree: SearchTree {
-    associatedtype Value: Searchable
-    associatedtype Next: MutableSearchTree where Next.ID == ID, Next.Value == Value
+    associatedtype Next: MutableSearchTree where Next.ID == ID
 
-    func appending(id: ID, value: Value) -> Next
-    func eraseToAnyMutableSearchTree() -> AnyMutableSearchTree<ID, Value>
+    func appending(id: ID, components: [String : Double]) -> Next
+    func eraseToAnyMutableSearchTree() -> AnyMutableSearchTree<ID>
 }
 
 extension MutableSearchTree {
 
-    public func eraseToAnyMutableSearchTree() -> AnyMutableSearchTree<ID, Value> {
+    public func eraseToAnyMutableSearchTree() -> AnyMutableSearchTree<ID> {
         return AnyMutableSearchTree(self)
     }
 

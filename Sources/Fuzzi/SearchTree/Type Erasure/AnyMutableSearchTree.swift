@@ -1,17 +1,17 @@
 
 import Foundation
 
-public struct AnyMutableSearchTree<ID, Value: Searchable>: MutableSearchTree {
-    let _appending: (ID, Value) -> AnyMutableSearchTree<ID, Value>
+public struct AnyMutableSearchTree<ID>: MutableSearchTree {
+    let _appending: (ID, [String : Double]) -> AnyMutableSearchTree<ID>
     let _search: (String, Int, Double, SearchOptions) -> [SearchResult<ID>]
 
-    init<T: MutableSearchTree>(_ tree: T) where T.ID == ID, T.Value == Value {
-        self._appending = { tree.appending(id: $0, value: $1).eraseToAnyMutableSearchTree() }
+    init<T: MutableSearchTree>(_ tree: T) where T.ID == ID {
+        self._appending = { tree.appending(id: $0, components: $1).eraseToAnyMutableSearchTree() }
         self._search = { tree.performSearch(query: $0, maxDistance: $1, relevantAfter: $2, options: $3) }
     }
 
-    public func appending(id: ID, value: Value) -> AnyMutableSearchTree<ID, Value> {
-        return _appending(id, value)
+    public func appending(id: ID, components: [String : Double]) -> AnyMutableSearchTree<ID> {
+        return _appending(id, components)
     }
 
     public func performSearch(query: String, maxDistance: Int, relevantAfter: Double, options: SearchOptions) -> [SearchResult<ID>] {
@@ -22,7 +22,7 @@ public struct AnyMutableSearchTree<ID, Value: Searchable>: MutableSearchTree {
         return AnySearchTree(_search: _search)
     }
 
-    public func eraseToAnyMutableSearchTree() -> AnyMutableSearchTree<ID, Value> {
+    public func eraseToAnyMutableSearchTree() -> AnyMutableSearchTree<ID> {
         return self
     }
 }

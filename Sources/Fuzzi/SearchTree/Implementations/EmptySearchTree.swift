@@ -6,10 +6,10 @@ struct EmptySearchTree<ID: Hashable, Value: Searchable>: MutableSearchTree {
         return []
     }
 
-    func appending(id: ID, value: Value) -> AnyMutableSearchTree<ID, Value> {
-        guard let component = components(for: value).first?.key else { return eraseToAnyMutableSearchTree() }
-        var tree = BKSearchTree<ID, Value>(component: component)
-        tree.append(id: id, value: value)
+    func appending(id: ID, components: [String : Double]) -> AnyMutableSearchTree<ID> {
+        guard let component = components.first?.key else { return eraseToAnyMutableSearchTree() }
+        var tree = BKSearchTree<ID>(component: component)
+        tree.append(id: id, components: components)
         return tree.eraseToAnyMutableSearchTree()
     }
 }

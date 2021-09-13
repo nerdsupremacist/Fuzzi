@@ -5,7 +5,7 @@ extension Dictionary where Value: Searchable {
 
     func keySearchTree() -> AnySearchTree<Key> {
         let tree = EmptySearchTree<Key, Value>().eraseToAnyMutableSearchTree()
-        return reduce(tree) { $0.appending(id: $1.key, value: $1.value) }.eraseToAnySearchTree()
+        return reduce(tree) { $0.appending(id: $1.key, components: components(for: $1.value)) }.eraseToAnySearchTree()
     }
 
     func valueSearchTree() -> AnySearchTree<Value> {

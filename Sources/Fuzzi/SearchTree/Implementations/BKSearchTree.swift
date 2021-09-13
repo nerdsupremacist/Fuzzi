@@ -1,12 +1,12 @@
 
 import Foundation
 
-struct BKSearchTree<ID: Hashable, Value: Searchable>: MutableSearchTree {
-    typealias Next = BKSearchTree<ID, Value>
+struct BKSearchTree<ID: Hashable>: MutableSearchTree {
+    typealias Next = BKSearchTree<ID>
 
     let component: String
     var values: [(ID, Double)]
-    var children: [Int : BKSearchTree<ID, Value>]
+    var children: [Int : BKSearchTree<ID>]
 }
 
 extension BKSearchTree {
@@ -23,14 +23,14 @@ extension BKSearchTree {
         children[distance, default: .init(component: component)].append(id: id, for: component, weight: weight)
     }
 
-    mutating func append(id: ID, value: Value) {
-        components(for: value).forEach { append(id: id, for: $0.key, weight: $0.value) }
+    func appending(id: ID, components: [String : Double]) -> BKSearchTree<ID> {
+        var tree = self
+        tree.append(id: id, components: components)
+        return tree
     }
 
-    func appending(id: ID, value: Value) -> BKSearchTree<ID, Value> {
-        var tree = self
-        tree.append(id: id, value: value)
-        return tree
+    mutating func append(id: ID, components: [String : Double]) {
+        components.forEach { append(id: id, for: $0.key, weight: $0.value) }
     }
 
     func searchWord(accumulator: [ID : SearchResult<ID>],
