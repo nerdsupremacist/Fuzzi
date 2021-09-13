@@ -3,7 +3,7 @@ import Foundation
 import XCTest
 @testable import Fuzzi
 
-struct User: Searchable, Hashable {
+struct User: Searchable, Hashable, Codable {
     let firstname: String
     let lastname: String
 
@@ -17,7 +17,7 @@ struct User: Searchable, Hashable {
     }
 }
 
-struct Post: Searchable, Hashable {
+struct Post: Searchable, Hashable, Codable {
     let author: User
     let text: String
 

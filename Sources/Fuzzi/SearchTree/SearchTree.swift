@@ -5,7 +5,6 @@ public protocol SearchTree {
     associatedtype ID
 
     func performSearch(query: String, maxDistance: Int, relevantAfter: Double, options: SearchOptions) -> [SearchResult<ID>]
-    func eraseToAnySearchTree() -> AnySearchTree<ID>
 }
 
 extension SearchTree {
@@ -30,15 +29,6 @@ extension SearchTree {
                              maxDistance: maxDistance,
                              relevantAfter: relevantAfter,
                              options: options).map { $0.value }
-    }
-
-}
-
-
-extension SearchTree {
-
-    public func eraseToAnySearchTree() -> AnySearchTree<ID> {
-        return AnySearchTree(self)
     }
 
 }

@@ -4,8 +4,13 @@ import Foundation
 struct BKSearchTree<ID: Hashable>: MutableSearchTree {
     typealias Next = BKSearchTree<ID>
 
+    struct ValueEntry {
+        let value: ID
+        let weight: Double
+    }
+
     let component: String
-    var values: [(ID, Double)]
+    var values: [ValueEntry]
     var children: [Int : BKSearchTree<ID>]
 }
 
@@ -17,7 +22,7 @@ extension BKSearchTree {
 
     private mutating func append(id: ID, for component: String, weight: Double) {
         guard component != self.component else {
-            return values.append((id, weight))
+            return values.append(ValueEntry(value: id, weight: weight))
         }
         let distance = self.component.distance(to: component)
         children[distance, default: .init(component: component)].append(id: id, for: component, weight: weight)
@@ -49,10 +54,9 @@ extension BKSearchTree {
         let coefficient = Search.coefficient(value: query, using: component, options: options)
 
         if currentDistance <= maxDistance, coefficient >= relevantAfter {
-            values.forEach { value in
-                let (value, weight) = value
-                let occurence = Occurence(component: component, coefficient: coefficient * weight)
-                accumulator[value, default: .init(value: value)].append(occurence)
+            values.forEach { entry in
+                let occurence = Occurence(component: component, coefficient: coefficient * entry.weight)
+                accumulator[entry.value, default: .init(value: entry.value)].append(occurence)
             }
         }
 
@@ -88,3 +92,11 @@ extension BKSearchTree {
     }
 
 }
+
+extension BKSearchTree.ValueEntry: Encodable where ID: Encodable { }
+
+extension BKSearchTree.ValueEntry: Decodable where ID: Decodable { }
+
+extension BKSearchTree: Encodable where ID: Encodable { }
+
+extension BKSearchTree: Decodable where ID: Decodable { }
