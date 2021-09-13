@@ -1,7 +1,7 @@
 
 import Foundation
 
-@_functionBuilder
+@resultBuilder
 public struct SearchableBuilder { }
 
 extension SearchableBuilder {
@@ -14,7 +14,31 @@ extension SearchableBuilder {
         return content
     }
 
-    % for numberOfComponents in range(3, 22):
+    public static func buildIf<T: Searchable>(_ component: T?) -> T? {
+        return component
+    }
+
+    public static func buildEither<A: Searchable, B: Searchable>(first: A) -> EitherSearchable<A, B> {
+        return EitherSearchable(first: first)
+    }
+
+    public static func buildEither<A: Searchable, B: Searchable>(second: B) -> EitherSearchable<A, B> {
+        return EitherSearchable(second: second)
+    }
+
+    public static func buildIf<T: Searchable>(first: T) -> T {
+        return first
+    }
+
+    public static func buildIf<T: Searchable>(second: T) -> T {
+        return second
+    }
+
+    public static func buildArray<T : Searchable>(_ array: [T]) -> [T] {
+        return array
+    }
+
+    % for numberOfComponents in range(3, 52):
     %{ generics = ", ".join(["C" + str(i) + " : Searchable" for i in range(1, numberOfComponents)]) }%
     %{ tupleGenerics = ", ".join(["C" + str(i) for i in range(1, numberOfComponents)]) }%
     %{ arguments = ", ".join(["_ c" + str(i) + ": C" + str(i) + "" for i in range(1, numberOfComponents)]) }%

@@ -12,7 +12,8 @@ struct User: Searchable, Hashable {
     }
 
     var body: some Searchable {
-        return fullname.searchWords().enablePrefixes(minimumPrefixSize: 3)
+        Words(fullname)
+            .enablePrefixes(minimumPrefixSize: 3)
     }
 }
 
@@ -21,11 +22,9 @@ struct Post: Searchable, Hashable {
     let text: String
 
     var body: some Searchable {
-        CompoundSearchable {
-            author
+        author
 
-            text.searchWords()
-        }
+        Words(text)
     }
 }
 
@@ -42,8 +41,8 @@ class SearchableTest: XCTestCase {
         ]
 
         let tree = posts.searchTree()
-        let max = tree.search(query: "Max")  as [Post]
-        let turtle = tree.search(query: "Turtlo")  as [Post]
+        let max = tree.search(query: "Max") as [Post]
+        let turtle = tree.search(query: "Turtlo") as [Post]
 
         XCTAssertEqual(posts[2], max.first)
         XCTAssertEqual([posts[1]], turtle)
